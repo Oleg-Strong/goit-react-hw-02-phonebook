@@ -22,8 +22,8 @@ ContactList.propTypes = {
   phonebook: PropTypes.arrayOf(
     PropTypes.shape({
       name: PropTypes.string.isRequired,
-      id: PropTypes.number.isRequired,
-      number: PropTypes.number.isRequired,
+      id: PropTypes.string.isRequired,
+      number: PropTypes.string.isRequired,
     })
   ).isRequired,
   onDeleteContact: PropTypes.func.isRequired,

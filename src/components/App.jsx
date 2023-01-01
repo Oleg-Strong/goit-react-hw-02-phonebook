@@ -55,6 +55,7 @@ class App extends Component {
 
   getFilteredContacts = () => {
     const { contacts, filter } = this.state;
+    console.log(filter);
     return contacts.filter(contact =>
       contact.name.toLowerCase().includes(filter.toLowerCase())
     );
@@ -62,7 +63,6 @@ class App extends Component {
 
   render() {
     const { filter } = this.state;
-
     return (
       <div className={css.appConteiner}>
         <Section title="Phonebook">
