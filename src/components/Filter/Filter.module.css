@@ -10,11 +10,15 @@
   display: flex;
   flex-direction: column;
   gap: 20px;
+  cursor: pointer;
 }
 .filterFormInput {
   border-radius: 10px;
   border-color: transparent;
   padding: 5px;
+}
+.filterFormInput::placeholder {
+  font-weight: 700;
 }
 .filterFormInput:focus {
   background-color: rgb(234, 210, 24);

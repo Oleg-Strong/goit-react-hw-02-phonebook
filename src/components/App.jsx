@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 import phonebook from './phonebook';
 import shortid from 'shortid';
 import css from './App.module.css';
-import Section from './Section/Section';
-import ContactForm from './ContactForm/ContactForm';
-import ContactList from './ContactList/ContactList';
-import Filter from './Filter/Filter';
+import Section from './Section';
+import ContactForm from './ContactForm';
+import ContactList from './ContactList';
+import Filter from './Filter';
 
 class App extends Component {
   state = {
@@ -13,7 +13,7 @@ class App extends Component {
     filter: '',
   };
 
-  checkscContactBeforeAdding = contact => {
+  checkContactBeforeAdding = contact => {
     const { name, number } = contact;
     const { contacts } = this.state;
     const normalazetName = name.toLowerCase().split(' ').join('');
@@ -55,22 +55,25 @@ class App extends Component {
 
   getFilteredContacts = () => {
     const { contacts, filter } = this.state;
+    const normalizedFilter = filter.toLowerCase();
     return contacts.filter(contact =>
-      contact.name.toLowerCase().includes(filter.toLowerCase())
+      contact.name.toLowerCase().includes(normalizedFilter)
     );
   };
 
   render() {
     const { filter } = this.state;
+    const filteredContacts = this.getFilteredContacts();
+
     return (
       <div className={css.appConteiner}>
         <Section title="Phonebook">
-          <ContactForm onSubmit={this.checkscContactBeforeAdding}></ContactForm>
+          <ContactForm onSubmit={this.checkContactBeforeAdding}></ContactForm>
         </Section>
         <Section title="Contacts">
           <Filter name={filter} onFilterChange={this.changeFilter}></Filter>
           <ContactList
-            phonebook={this.getFilteredContacts()}
+            phonebook={filteredContacts}
             onDeleteContact={this.deleteContact}
           ></ContactList>
         </Section>
